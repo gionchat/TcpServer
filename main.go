@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	listener, err := net.Listen("tcp", "0.0.0.0:8266")
+	listener, err := net.Listen("tcp", "192.168.2.5:8266")
 	if err != nil {
 		fmt.Printf("listen fail, err: %v\n", err)
 		return
@@ -36,6 +36,7 @@ func process(conn net.Conn) {
 		}
 		str := string(buf[:n])
 		fmt.Printf("client data: \n%v\n", str)
+		fmt.Printf("from ip: \n%v\n", conn.RemoteAddr())
 		newmessage := "ok\r\n"
 		// send new string back to client
 		fmt.Printf("server data: \n%v\n", newmessage)
